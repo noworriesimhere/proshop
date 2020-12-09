@@ -1,11 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import products from '../products';
 
 const HomeScreen = () => {
   return (
-    <>
+    <Router>
       <h1>Latest Products</h1>
       <Row>
         {products.map((product) => (
@@ -14,7 +15,7 @@ const HomeScreen = () => {
           </Col>
         ))}
       </Row>
-    </>
+    </Router>
   );
 };
 
