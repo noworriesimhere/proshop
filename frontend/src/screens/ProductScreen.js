@@ -27,7 +27,7 @@ const ProductScreen = ({ history, match }) => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
 
-  const addToCardHandler = () => {
+  const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
@@ -103,7 +103,7 @@ const ProductScreen = ({ history, match }) => {
 
                 <ListGroupItem>
                   <Button
-                    onClick={addToCardHandler}
+                    onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
                     disabled={product.countInStock === 0}
