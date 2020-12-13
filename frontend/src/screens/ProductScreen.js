@@ -18,6 +18,7 @@ import { addToCart } from '../actions/cartActions';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -29,7 +30,7 @@ const ProductScreen = ({ history, match }) => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(match.params.id, qty));
-    history.push('/cart/');
+    setIsAddedToCart(true);
   };
 
   return (
@@ -37,6 +38,13 @@ const ProductScreen = ({ history, match }) => {
       <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
+      {isAddedToCart ? (
+        <Message variant={'dark'}>
+          Item added! <Link to='/cart'> Go to cart</Link>
+        </Message>
+      ) : (
+        ''
+      )}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -91,7 +99,7 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Control
                           as='select'
                           value={qty}
-                          onChange={(e) => setQty(e.target.value)}
+                          onChange={(e) => setQty(Number(e.target.value))}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>

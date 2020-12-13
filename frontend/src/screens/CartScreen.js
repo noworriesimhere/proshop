@@ -11,7 +11,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import { updateCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   // const productId = match.params.id;
@@ -64,7 +64,7 @@ const CartScreen = ({ match, location, history }) => {
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          addToCart(item.product, Number(e.target.value))
+                          updateCart(item.product, Number(e.target.value))
                         )
                       }
                     >
