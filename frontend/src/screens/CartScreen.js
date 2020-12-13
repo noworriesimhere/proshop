@@ -14,20 +14,20 @@ import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
-  const productId = match.params.id;
+  // const productId = match.params.id;
 
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
+  // const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty));
-    }
-  }, [dispatch, productId, qty]);
+  // useEffect(() => {
+  //   if (productId) {
+  //     dispatch(addToCart(productId, qty));
+  //   }
+  // }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
@@ -42,7 +42,7 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <Message>
+          <Message variant={'dark'}>
             Your cart is empty <Link to='/'>Go Back</Link>
           </Message>
         ) : (
@@ -105,7 +105,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <Button
                 type='button'
-                className='btn btn-block'
+                className='btn-block'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
