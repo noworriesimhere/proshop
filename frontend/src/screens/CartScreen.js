@@ -11,7 +11,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import Message from '../components/Message';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -30,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log('remove');
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -57,7 +57,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
-                  <Col md={2}>
+                  <Col md={3}>
                     <Form.Control
                       as='select'
                       value={item.qty}
@@ -74,7 +74,7 @@ const CartScreen = ({ match, location, history }) => {
                       ))}
                     </Form.Control>
                   </Col>
-                  <Col md={2}>
+                  <Col md={1}>
                     <Button
                       type='button'
                       variant='light'
