@@ -28,8 +28,8 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match]);
 
   const addToCartHandler = () => {
-    // history.push(`/cart/${match.params.id}?qty=${qty}`);
     dispatch(addToCart(match.params.id, qty));
+    history.push('/cart/');
   };
 
   return (

@@ -37,6 +37,7 @@ const CartScreen = ({ match, location, history }) => {
     history.push('./login?redirect=shipping');
   };
 
+  const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
   return (
     <Row>
       <Col md={8}>
@@ -94,8 +95,8 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
+                Subtotal ({totalItems}) item
+                {totalItems === 1 ? '' : 's'}
               </h2>
               $
               {cartItems
